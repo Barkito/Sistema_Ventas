@@ -3,6 +3,13 @@ using System.Runtime.CompilerServices;
 
 namespace Sistema_Ventas.Models
 {
+    public enum Nivel
+    {
+        Basico ,
+        Intermedio ,
+        Avanzado ,
+        Experto
+    };
     public class Curso : BaseEntity
     {
         [Required, StringLength(50)]
@@ -18,6 +25,14 @@ namespace Sistema_Ventas.Models
 
         [Required, StringLength(100)]
         public string required { get; set; } = string.Empty;
-        public Nivel NivelId { get; set; } 
+        public Nivel NivelId { get; set; } = Nivel.Basico;
+
+        [Required]
+        public ICollection<Category> categories { get; set; }   = new List<Category>();
+
+        [Required]
+        public Temarios temary { get; set; } = new Temarios();
+        [Required]
+        public ICollection<Students> students { get; set; } = new List<Students>();
     }
 }
